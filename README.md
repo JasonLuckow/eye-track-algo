@@ -1,2 +1,2 @@
 # eye-track-algo
-# demo
+# this is a demo
