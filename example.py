@@ -10,9 +10,13 @@ gaze = GazeTracking()
 webcam = cv2.VideoCapture(1)
 
 while True:
-    gaze.refresh()
+    # We get a new frame from the webcam
+    _, frame = webcam.read()
 
-    frame = gaze.main_frame(True)
+    # We send this frame to GazeTracking to analyze it
+    gaze.refresh(frame)
+
+    frame = gaze.annotated_frame()
     text = ""
 
     if gaze.is_blinking():
@@ -32,8 +36,11 @@ while True:
     cv2.putText(frame, "Right pupil: " + str(right_pupil), (90, 165), cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
 
 
-    # demo = cv2.resize(frame, (1920,1080))
-    cv2.imshow("Demo", frame)
+    demo = cv2.resize(frame, (1920,1080))
+    cv2.imshow("Demo", demo)
 
     if cv2.waitKey(1) == 27:
         break
+   
+webcam.release()
+cv2.destroyAllWindows()
