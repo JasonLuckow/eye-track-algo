@@ -72,6 +72,5 @@ dfRight = pd.DataFrame(right)
 dfLeft.to_csv('eye-track-algo/data/left/{}.csv'.format(fileName), index=False)
 dfRight.to_csv('eye-track-algo/data/right/{}.csv'.format(fileName), index=False)
 
-print(dfLeft)
 webcam.release()
 cv2.destroyAllWindows()
